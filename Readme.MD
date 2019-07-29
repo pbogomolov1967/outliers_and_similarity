@@ -31,6 +31,17 @@ point lies from the center of its cluster in terms of STD.
 
 We calculate STD among all distances in each cluster from each data point to the center of its cluster. Then every distance is divided by its cluster's STD.
 
+## outliers_plot_with_slider.ipynb
+
+Select outliers dynamic demo
+
+Below a demo for just one cluster (group) of data points. This demo shows how to select outliers by given a predefined number of outliers in term of STDs.
+
+- Run all cells the cell below and
+- Move the slider using your mouse
+
+Moving the slider you change the number of STDs and select outliers those greater than a given number of outliers.
+
 ## License
 
 This project is licensed under the Apache License, Version 2.0 (the "License"); 
