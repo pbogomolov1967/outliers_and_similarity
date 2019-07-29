@@ -72,17 +72,15 @@ def run_demo_nb():
     std_max = np.max(std)
 
     def plot_func(STDs):
-        fig_title = f'Outliers grater than {"{0:.1f}".format(STDs)} STDs'
         data_color, data_size = calc(data, STDs)
-        fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(6, 6))
-        fig.canvas.set_window_title('t1')
-        ax1.set_title('t2')
+        fig, ax1 = plt.subplots(nrows=1, ncols=1)
         ax1.clear()
         ax1.scatter(x=data[:, 0], y=data[:, 1], marker='o', c=data_color, s=data_size, cmap='RdYlGn_r', alpha=0.5)
         annotate_data_points(ax1, std_distances)
+        fig.canvas.draw_idle()
 
     interact(plot_func, STDs=widgets.FloatSlider(min=0, max=std_max, value=std_max, step=0.1))
-    plot_func(STDs=std_max)
+    # plot_func(STDs=std_max)
 
 
 if __name__ == '__main__':
