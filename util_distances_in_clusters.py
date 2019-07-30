@@ -9,7 +9,7 @@ sys.path.append('/content/gdrive/My Drive/Colab Notebooks/outliers_demo')
 """
 
 
-def plot_kmeans(plt, k_means, X, ax=None, title=None, x_lab=None, y_lab=None):
+def plot_kmeans(plt, k_means, X, ax=None, title=None, x_lab=None, y_lab=None, draw_lines=False):
     labels = k_means.fit_predict(X)
 
     # plot the input data
@@ -24,9 +24,13 @@ def plot_kmeans(plt, k_means, X, ax=None, title=None, x_lab=None, y_lab=None):
     centers = k_means.cluster_centers_
     radii = [cdist(X[labels == i], [center]).max()
              for i, center in enumerate(centers)]
-    for c, r in zip(centers, radii):
+    for c_ix, (c, r) in enumerate(zip(centers, radii)):
         ax.add_patch(plt.Circle(c, r, fc='#CCCCCC', lw=3, alpha=0.5, zorder=1))
         ax.add_patch(plt.Circle(c, 0.1, fc='#34CA9C', lw=3, alpha=0.5, zorder=1))
+        if draw_lines:
+            for x_ix, xy in enumerate(X):
+                lab_ix = labels[x_ix]
+                ax.annotate("", xy=X[x_ix], xytext=centers[lab_ix], arrowprops = dict(arrowstyle="->"))
 
     return ax
 

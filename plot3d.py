@@ -7,6 +7,8 @@ def plot3D(X, Y, Z, height=600, xlabel="X", ylabel="Y", zlabel="Z", initialCamer
     """
     Code from
     https://stackoverflow.com/questions/38364435/python-matplotlib-make-3d-plot-interactive-in-jupyter-notebook
+    See also
+    https://visjs.github.io/vis-graph3d/examples/graph3d/playground/index.html
     """
     options = {
         "width": "100%",
