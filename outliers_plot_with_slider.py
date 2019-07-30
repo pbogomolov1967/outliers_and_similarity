@@ -2,7 +2,9 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import ipywidgets as widgets
 
+from ipywidgets import interact
 from sklearn.cluster import KMeans
 from sklearn.datasets.samples_generator import make_blobs
 from util_distances_in_clusters import calc_distances, annotate_data_points
@@ -56,8 +58,8 @@ def run_demo_py():
 
 
 def run_demo_nb():
-    from ipywidgets import interact, interactive, fixed, interact_manual
-    import ipywidgets as widgets
+
+    # https://nbviewer.jupyter.org/github/pbogomolov1967/outliers_and_similarity/blob/master/outliers_plot_with_slider.ipynb
 
     global data, kmeans, std_distances
     # Generate some data
@@ -74,8 +76,10 @@ def run_demo_nb():
     def plot_func(STDs):
         data_color, data_size = calc(data, STDs)
         fig, ax1 = plt.subplots(nrows=1, ncols=1)
+        center = kmeans.cluster_centers_[0]
         ax1.clear()
         ax1.scatter(x=data[:, 0], y=data[:, 1], marker='o', c=data_color, s=data_size, cmap='RdYlGn_r', alpha=0.5)
+        ax1.scatter(x=center[0],  y=center[1],  marker='o', c='b', s=100, cmap='RdYlGn_r', alpha=0.5)
         annotate_data_points(ax1, std_distances)
         fig.canvas.draw_idle()
 
