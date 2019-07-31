@@ -3,12 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 from sklearn import mixture
 
-
-def annotate_data_points(xy, numbers, ax=None, label_offset=0.05, fontsize=8):
-    ax = ax or plt.gca()
-    for ix, n in enumerate(numbers):
-        label1 = str(round(n, 1))
-        ax.annotate(label1, xy=xy[ix], xytext=np.array(xy[ix]) + label_offset, fontsize=fontsize)
+from util_distances_in_clusters import annotate_data_points2
 
 
 def run_gmm_nb():
@@ -40,7 +35,7 @@ def run_gmm_nb():
 
     # np.exp(weighted_log_probs).sum() ~ 1.
     weighted_log_probs = clf.score_samples(X_train)
-    annotate_data_points(X_train, np.exp(weighted_log_probs) * 100.)
+    annotate_data_points2(plt, X_train, np.exp(weighted_log_probs) * 100.)
 
     plt.title('GMM probs')
     plt.axis('tight')

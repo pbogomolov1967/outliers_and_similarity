@@ -9,13 +9,14 @@ sys.path.append('/content/gdrive/My Drive/Colab Notebooks/outliers_demo')
 """
 
 
-def plot_kmeans(plt, k_means, X, ax=None, title=None, x_lab=None, y_lab=None, draw_lines=False):
+def plot_kmeans(plt, k_means, X, ax=None, title=None, x_lab=None, y_lab=None, draw_lines=False, colors=None):
     labels = k_means.fit_predict(X)
+    colors = colors if colors is not None else labels
 
     # plot the input data
     ax = ax or plt.gca()
     ax.axis('equal')
-    ax.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap='viridis', zorder=2)
+    ax.scatter(X[:, 0], X[:, 1], c=colors, s=40, cmap='viridis', zorder=2)
     if title is not None: ax.set_title(title)
     if x_lab is not None: ax.set_xlabel(x_lab)
     if y_lab is not None: ax.set_ylabel(y_lab)
@@ -58,3 +59,10 @@ def annotate_data_points(ax, std_distances):
         for ix, std in enumerate(std):
             label1 = str(round(std, 1))
             ax.annotate(label1, xy=xy[ix], xytext=np.array(xy[ix]) + 0.05, fontsize=8)
+
+
+def annotate_data_points2(plt, xy, numbers, ax=None, label_offset=0.05, fontsize=8):
+    ax = ax or plt.gca()
+    for ix, n in enumerate(numbers):
+        label1 = str(round(n, 1))
+        ax.annotate(label1, xy=xy[ix], xytext=np.array(xy[ix]) + label_offset, fontsize=fontsize)

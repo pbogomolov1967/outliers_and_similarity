@@ -42,6 +42,17 @@ Below a demo for just one cluster (group) of data points. This demo shows how to
 
 Moving the slider you change the number of STDs and select outliers those greater than a given number of outliers.
 
+## gmm_probs.ipynb
+
+Gaussian Mixture Model allows us to count on non-spherical clusters. 
+If a cluster is stretched cloud of data points we can use Gaussian Mixture Model (GMM) 
+to count of covariance of the data correctly.
+
+## similarity.ipynb
+
+Sample how to use similarity in the cluster to calculate the weighted average price 
+for a particular data point.
+
 ## License
 
 This project is licensed under the Apache License, Version 2.0 (the "License"); 
